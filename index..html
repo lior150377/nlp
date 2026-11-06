@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NEUROCODE</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Anton&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080b0a;--cd:#111715;--tx:#f2f5ee;--mu:#8d9a90;--wv:#d4ff3a;--am:#8fd61f;--ln:#212b26;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+:root[data-theme="dark"]{--bg:#0f1226;--cd:#191d3a;--tx:#eceaff;--mu:#9a9cc4;--wv:#8fd3c8;--am:#f4c986;--ln:#2a2f57}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:"Heebo","Assistant","Segoe UI",Arial,sans-serif;line-height:1.6}
+*{box-sizing:border-box}
+#main{max-width:520px;margin:0 auto;padding:20px 16px 96px}
+h1{font-size:34px;margin:8px 0 4px;letter-spacing:.5px}
+h2{font-size:20px;margin:26px 0 10px}
+.mu{color:var(--mu);margin:4px 0 12px}
+.card{background:var(--cd);border:1px solid var(--ln);border-radius:14px;padding:14px 16px;margin:12px 0}
+.bar{height:8px;background:var(--ln);border-radius:8px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;background:var(--wv);transition:width .4s}
+.bar.am i{background:var(--am)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--wv);outline-offset:2px}
+.btn{width:100%;border:0;border-radius:12px;padding:14px;background:var(--wv);color:#07241f;font-weight:700;font-size:17px;margin:10px 0}
+.btn2{border:1px solid var(--ln);background:none;border-radius:10px;padding:8px 14px;margin-top:8px}
+.ser{border-inline-start:3px solid var(--wv);padding:6px 12px;margin:10px 0}
+.ser b{display:block}.ser small{color:var(--mu)}
+.day{display:flex;gap:12px;align-items:center;width:100%;text-align:start;background:var(--cd);border:1px solid var(--ln);border-radius:12px;padding:10px 12px;margin:8px 0}
+.day[disabled]{opacity:.45;cursor:not-allowed}
+.day>span{min-width:30px;font-size:20px;color:var(--wv);font-weight:700}
+.day div{flex:1}.day small{display:block;color:var(--mu)}
+.day.dn{border-color:var(--wv)}
+nav{position:fixed;bottom:0;inset-inline:0;display:flex;background:var(--cd);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;background:none;border:0;padding:14px 0;color:var(--mu);font-size:15px}
+nav button.on{color:var(--wv);font-weight:700}
+.ov{position:fixed;inset:0;background:var(--bg);overflow-y:auto;z-index:5;padding-top:env(safe-area-inset-top,0px)}
+.pad{max-width:520px;margin:0 auto;padding:20px 16px 40px}
+.x{background:none;border:0;font-size:24px;color:var(--mu);float:inline-start}
+.opt{display:block;width:100%;text-align:start;background:var(--cd);border:1px solid var(--ln);border-radius:12px;padding:14px;margin:10px 0}
+.opt:hover{border-color:var(--wv)}
+.ln{min-height:150px;font-size:22px;line-height:1.7;margin:22px 0;text-align:center}
+.ln b{color:#eaff8a;font-weight:700;text-shadow:0 0 12px rgba(234,255,138,.5);border-bottom:1px dashed rgba(234,255,138,.6)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.row .btn{width:auto;flex:1}
+label{display:block;margin:12px 0;color:var(--mu);font-size:14px}
+input[type=range]{width:100%;accent-color:var(--wv)}
+select{background:var(--cd);color:var(--tx);border:1px solid var(--ln);border-radius:8px;padding:4px}
+.ring{width:190px;height:190px;border-radius:50%;margin:40px auto 10px;border:2px solid var(--am);background:radial-gradient(circle,rgba(244,201,134,.35),transparent 70%);animation:br 10s ease-in-out infinite}
+@keyframes br{0%,100%{transform:scale(.55)}40%{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.ring{animation:none}}
+.sosb{width:170px;height:170px;border-radius:50%;border:2px solid var(--am);background:none;color:var(--am);font-size:20px;display:block;margin:30px auto}
+.fine{color:var(--mu);font-size:12px;margin-top:28px}
+h1,h2{font-weight:900;letter-spacing:-.5px}
+.big{font-family:"Anton","Heebo",Impact,sans-serif;font-weight:400;font-size:clamp(46px,15vw,84px);line-height:.92;margin:0;letter-spacing:1px}
+.hero{position:relative;height:340px;margin:-20px -16px 14px;overflow:hidden;border-bottom:1px solid var(--ln)}
+#ct{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
+.hh{position:absolute;inset-inline:16px;bottom:14px;pointer-events:none}
+.hh .mu{margin:0 0 6px;letter-spacing:3px;font-size:12px}
+.tk{direction:ltr;overflow:hidden;white-space:nowrap;border-block:1px solid var(--ln);padding:8px 0;margin:14px -16px;font-family:"Anton",Impact,sans-serif;letter-spacing:3px;color:var(--wv)}
+.tk span{display:inline-block;animation:mq 40s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.tk span{animation:none}}
+#intro{position:fixed;inset:0;z-index:9;background:radial-gradient(circle at 50% 40%,#0f1b14,#05080a 70%);transition:opacity .6s}
+#intro.off{opacity:0;pointer-events:none}
+#ct0{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.ih{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:calc(44px + env(safe-area-inset-top,0px)) 20px calc(34px + env(safe-area-inset-bottom,0px));text-align:center;pointer-events:none}
+.wm{font-family:"Anton",Impact,sans-serif;font-weight:400;font-size:clamp(44px,14vw,76px);letter-spacing:3px;margin:0;line-height:1;background:linear-gradient(90deg,#eaff8a,#8fd61f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ih p{margin:6px 0 0;letter-spacing:3px;font-size:12px;color:var(--mu)}
+.ih .btn{pointer-events:auto;max-width:340px;border-radius:40px;letter-spacing:3px;font-family:"Anton",Impact,sans-serif;font-weight:400}
+#mus{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:12px;z-index:10;width:40px;height:40px;border-radius:50%;border:1px solid var(--ln);background:var(--cd);color:var(--wv);opacity:1}
+nav{inset-inline:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-bottom:0;border:1px solid var(--ln);border-radius:32px;background:rgba(17,23,21,.88);backdrop-filter:blur(10px);overflow:hidden}
+.card{border-radius:22px}.day{border-radius:18px}
+.ser{border:0;border-top:1px solid var(--ln);padding:14px 0;margin:0}.ser b{font-size:22px;font-weight:900}
+.bar.am i{background:linear-gradient(90deg,#eaff8a,#8fd61f)}
+.ring{background:radial-gradient(circle,rgba(212,255,58,.3),transparent 70%)}
+.sosf{position:fixed;inset-inline-end:14px;bottom:calc(78px + env(safe-area-inset-bottom,0px));z-index:4;width:58px;height:58px;border-radius:50%;border:2px solid var(--wv);background:var(--bg);color:var(--wv);font-family:"Anton",Impact,sans-serif;letter-spacing:1px;font-size:16px;box-shadow:0 0 18px rgba(212,255,58,.35)}
+#eeg{pointer-events:auto;text-align:center;touch-action:none;user-select:none;-webkit-user-select:none}
+#tp{width:min(62vw,270px);height:min(62vw,270px);display:block;margin:0 auto 10px}
+.eg{font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:2px;font-size:11px;color:var(--mu);direction:ltr}
+#el1{color:var(--tx);font-weight:700;font-size:13px}
+.gz{position:relative;direction:ltr;height:10px;margin:16px auto 8px;width:min(80vw,340px);border-radius:6px;background:linear-gradient(90deg,#eaff8a,#8fd61f,#d4ff3a)}
+.gm{position:absolute;top:-5px;left:0;width:4px;height:20px;background:#fff;border-radius:2px;box-shadow:0 0 8px #fff;transform:translateX(-50%)}
+.gl{display:flex;justify-content:space-between;width:min(80vw,340px);margin:0 auto}
+</style></head><body>
+<main id="main"></main>
+<nav><button data-t="home">בית</button><button data-t="path">מסלול 21 יום</button><button data-t="sos">שליפה מהירה</button></nav>
+<div id="intro"><canvas id="ct0"></canvas><div class="ih"><div><img src="assets/logo.png" alt="NEUROCODE" style="display:block;width:min(50vw,220px);margin:0 auto"></div><div id="eeg"><div id="vw" style="position:relative;width:min(92vw,440px);aspect-ratio:4/3;margin:0 auto;overflow:hidden;border-radius:22px;border:1px solid var(--ln)"><img id="iv" src="assets/hero.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%"><canvas id="sp" style="position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair"></canvas></div></div><div><p style="margin:0 0 14px">לחץ כדי להיכנס</p><button class="btn" id="go">LOAD NEUROCODE</button></div></div></div>
+<button class="sosf" onclick="sosOpen()" aria-label="SOS">SOS</button>
+<button id="mus" aria-label="מוזיקה">♪</button>
+<div id="ov" class="ov" hidden></div>
+<script>
+const $=s=>document.querySelector(s);
+let st={vak:null,done:[],word:"בהירות",sos:0};
+try{st=Object.assign(st,JSON.parse(localStorage.getItem("ns")||"{}"))}catch(e){}
+const save=()=>{try{localStorage.setItem("ns",JSON.stringify(st))}catch(e){}};
+const buzz=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+const S=[["Somatic Vagus Reset","מתח שרירי כרוני, עוררות יתר, קושי להירדם","דלתא-תטא 3.5–6Hz"],["Executive Edge & Flow","היסוס בהחלטות, פיזור קשב, רעש מנטלי תחת לחץ","אלפא עם פולסי גאמא 40Hz"],["Identity & Abundance Architect","תקרת זכוכית, תסמונת המתחזה, חבלה עצמית","תטא עמוק 5.5Hz"],["Timeline Alchemist","טריגרים מהעבר ודפוסים שחוזרים בלופ","תטא נמוך 4.5Hz"],["Rapid Pattern Breakers","דחיינות, לופ מחשבות, נפילת אנרגיה (מיקרו-סשנים)","אלפא גבוה 12–15Hz"]];
+const D=[["The Master Shift: כיול עצבי ועוגן שקט","סשן הדגל המלא, 18 דקות"],["עמדת המתבונן","דיסוציאציה ועמדות תפיסה"],["פריקת תתי-אופנויות","כיווץ, החשכה והרחקה של התמונה"],["מערבל הקולות","עריכת תתי-אופנויות שמיעתיות"],["שחרור שורש בקו הזמן","Time Line Therapy: עבר"],["גילוי רווח משני","בדיקת אקולוגיה ואישור פנימי לשחרר"],["הריק","תטא-דלתא לאינטגרציה"],["אב-טיפוס העצמי העתידי","אסוציאציה מלאה רב-חושית"],["איחוד חלקים","סטריאו ימין/שמאל ומיזוג למרכז"],["חיתום אמונה חדשה","מיקום האמונה במרחב ה״אמיתות״"],["עליית פירמידת דילטס","מסביבה ועד זהות וחזרה"],["תכנות ה-RAS","פקודות מוטמעות לפילטר החיפוש"],["התקנת עוגן ראשון","עיגון פבלובי ופולס גאמא 40Hz"],["גיבוש אמונה עמוקה","חזרה היפנוטית (Overlearning)"],["לולאת Swish מהירה","12 חזרות עם אפקטים מרחביים"],["ערימת עוגנים","3 זיכרונות עוצמה לעוגן אחד"],["חיסון ללחץ","סימולציית עתיד והפעלת העוגן"],["נעילת העתיד","Time Line Therapy: עתיד"],["אימון מיקרו-שיפט","Fractionation מהיר בין בטא לתטא"],["חותם האוטומטיות","הצעות פוסט-היפנוטיות לחיי היום-יום"],["אינטגרציית המאסטר","סינתזה מלאה ונעילת זהות"]];
+const RM=[["כיול עצבי ואיפוס עצב הוואגוס", "הרפיית לסת וצוואר + סריקה מילטונית", "8Hz Alpha", 1, true], ["עמדת הצופה (Meta-Position)", "דיסוציאציה מדפוסים אוטומטיים", "7Hz Theta", 1, true], ["פירוק תתי-אופנויות (Submodalities)", "כיווץ והרחקת גירויי לחץ", "6Hz Theta", 1, true], ["נטרול הקול הפנימי הביקורתי", "עריכת תתי-אופנויות שמיעתיות", "6Hz Theta", 1, false], ["שחרור חותם שורש בקו הזמן", "Time Line Therapy - ניקוי עבר", "5Hz Theta", 1, false], ["גילוי ושחרור רווח משני", "Ecology Check בתת-המודע", "5.5Hz Theta", 1, false], ["המרחב הנקי (The Void Integration)", "אינטגרציית שבוע הפירוק", "4.5Hz Theta", 1, false], ["ארכיטקטורת הזהות החדשה", "אסוציאציה מלאה לדמות ה-Future Self", "5.5Hz Theta", 2, false], ["איחוד חלקים מתנגשים בסטריאו", "Parts Integration שמאל/ימין", "5.5Hz Theta", 2, false], ["קידוד אמונות ליבה חדשות", "Submodality Belief Re-imprinting", "6Hz Theta", 2, false], ["סנכרון פירמידת דילטס", "יישור התנהגות, יכולות וזהות", "5.5Hz Theta", 2, false], ["תכנות מסנן ה-RAS להזדמנויות", "הטמעת פקודות חיפוש בגזע המוח", "7Hz Theta", 2, false], ["יציקת העוגן הסומטי בגלי גאמא", "Pavlovian Somato-Acoustic Anchor", "40Hz Gamma", 2, false], ["נעילת רשת סינפטית חדשה", "Dual-Induction Overlearning", "5Hz Theta", 2, false], ["אוטומציית Swish במהירות גבוהה", "12 מחזורי Swish קצביים", "8Hz Alpha", 3, false], ["הערמת עוגנים (Anchor Stacking)", "הכפלת עוצמת העוגן העצבי", "40Hz Gamma", 3, false], ["חיסון מנטלי תחת לחץ (Stress Test)", "סימולציית אתגר ושמירה על קור רוח", "10Hz Alpha", 3, false], ["נעילת יעדים על קו הזמן העתידי", "Future Timeline Imprinting", "6Hz Theta", 3, false], ["מעבר מהיר מבטא לתטא ב-30 שניות", "Fractionation Speed Training", "12Hz->6Hz", 3, false], ["התניות פוסט-היפנוטיות ליומיום", "חיבור אוטומטי לטריגרים בסביבה", "6Hz Theta", 3, false], ["חתימת הזהות החדשה (Master Shift)", "נעילת ברירת המחדל החדשה", "5.5Hz + 40Hz", 3, false]];D.forEach((d,i)=>{if(i)d[0]=RM[i][0];d[1]=RM[i][1];d[2]=RM[i][2]});let PF=0;
+const W=["שבוע 1: פירוק ופינוי שטח עצבי","שבוע 2: כתיבת הקוד והתקנת זהות","שבוע 3: אוטומציה ועיגון"];
+const Q=[["כשעולה זיכרון של רגע שקט, מה עולה ראשון?","תמונה של המקום, האור והצבעים","הקולות או השקט המיוחד","תחושת חום והתרחבות בחזה"],["כשיש עומס יתר, איך זה מורגש אצלך?","ערפל או תמונות שרצות מהר","רעש פנימי ודיבור רועש בראש","לחץ, כיווץ ומתח בשרירים"],["מה מרגיע אותך הכי מהר?","מבט על נוף פתוח","מוזיקה או קול רגוע","מגע, מקלחת חמה או מתיחה"]];
+/* סשן הדגל: [שניה, פרופיל, טקסט]. הדגשה = פקודה מוטמעת */
+const SC=[
+[0,"*","אפשר לעצמך למצוא את המנח שבו הגוף לא צריך להחזיק שום דבר. קח שאיפה עמוקה דרך האף, ובנשיפה ארוכה דרך הפה <b>שחרר את הכל החוצה</b>."],
+[45,"*","כל נשיפה ארוכה משדרת דרך עצב הוואגוס שהכול בסדר. <b>אתה במקום בטוח עכשיו</b>. הרפיה אמיתית היא מה שנשאר כשאנחנו <b>מפסיקים להתאמץ</b>."],
+[90,"*","שים לב לקרקפת, למצח ולשרירים סביב העיניים. תן ללסת להיפרד במילימטר מהלסת העליונה. <b>הרפה את הצוואר והכתפיים עכשיו</b>."],
+[150,"V","מאחורי העיניים העצומות מרחב הראייה הפנימי מתבהר ומתרחב, כמו שמיים פתוחים. תמונות היום מתרחקות ודוהות."],
+[150,"A","בתוך מעטפת הצליל, קולות היום מתעמעמים ומתרחקים. בין מילה למילה נפתח שקט עמוק וצלול."],
+[150,"K","תחושת כובד חמימה ויציבה מתפשטת מהכתפיים אל הזרועות וכפות הידיים. כל תא שוקע לתמיכה רכה ושקטה."],
+[210,"*","כדי לאפשר למודע החושב לנוח, נספור מ-5 עד 1. עם כל מספר <b>צלול עמוק יותר</b>."],
+[240,"*","5. הגוף שוקע. 4. כל נשימה לוקחת אותך <b>עמוק יותר לתוך עצמך</b>. 3. המחשבות חולפות כמו עננים, <b>תן לתת-המודע להוביל</b>."],
+[300,"*","2. הזמן מאט והמוח גמיש <b>לעדכן את הקוד מבפנים</b>. 1. <b>צלול עמוק עכשיו</b>."],
+[345,"*","אתה במרחב הבקרה של תת-המודע, מקום שבו כל מילה וכל תחושה נטמעות ללא מאמץ."],
+[390,"*","מתוך עמדת צופה רגוע, העלה לרגע את הדפוס הישן: מתח מוכר או תגובה אוטומטית שסיימה את תפקידה. אל תיכנס לתוכה, רק <b>התבונן בה מבחוץ</b>."],
+[450,"V","הפוך את התמונה <b>לשחור-לבן</b>, הקטן אותה לגודל מסך טלפון ועמעם אותה עד שהיא שקופה ודהויה."],
+[450,"A","סובב בדמיון את כפתור הווליום של הקול הישן שמאלה. <b>הנמך את העוצמה שלו</b>, עד שהוא עמום ורחוק כמו רדיו בחדר סגור."],
+[450,"K","היכן הדפוס מורגש בגוף? דמיין שהאזור עשוי קרח שפוגש אור חם וזהוב. <b>המס את הנוקשות לנוזל חם וזורם</b>."],
+[510,"*","הודה לתת-המודע על הלקח שהוא שמר עבורך. בעוד רגע תשמע צליל תנועה, והדפוס יתכווץ ויישאב אל מעבר לאופק. שלוש... שתיים... אחת..."],
+[540,"*","נעלם. שים לב למרחב הנקי שנוצר. <b>נשום לתוך החופש הזה</b>."],
+[585,"*","לתוך המרחב הנקי, הרשה לגרסה החדה, השקטה והיציבה ביותר שלך להופיע מולך: ראש נישא בקלות, שקט בעיניים, ביטחון שלא צריך להוכיח דבר."],
+[660,"V","צעד קדימה ותיכנס לדמות. הסתכל על העולם דרך העיניים הממוקדות שלה, הכול חד, ברור ומסודר."],
+[660,"A","צעד קדימה ותיכנס לדמות. הקשב לקול הפנימי שלך עכשיו: יציב, סמכותי, שקט ובטוח."],
+[660,"K","צעד קדימה ותיכנס לדמות. הרגש זרימה חופשית בחזה, יציבות בעמוד השדרה ושחרור בלסת ובכתפיים."],
+[750,"*","<b>זה מי שאתה עכשיו</b>. תן לכל תא ולכל סינפסה להכיר את התדר הזה, <b>קבע את הזהות הזו כברירת מחדל</b>."],
+[780,"*","בשיא התחושה הזו של שקט, בהירות ושליטה, נקודד אותה לעוגן פיזי וקולי שתוכל להפעיל בכל רגע."],
+[810,"*","הצמד בעדינות את קצה האגודל והאצבע המורה של יד ימין. קח שאיפה עמוקה, והרגש את המיקוד והשקט מתעצמים. אמור בלב את מילת הקוד שלך: <b>{w}</b>."],
+[855,"*","החזק את המגע. הצליל, המגע והמילה ננעלים יחד במערכת העצבים. <b>חבר את המגע לשקט מוחלט</b>, <b>חבר את הצליל לחדות מיידית</b>. עכשיו שחרר את האצבעות. העוגן נטען וננעל."],
+[930,"*","דמיין את עצמך מחר, מול מסך או בפגישה, ברגע שבו בעבר הרגשת עומס. נשימה שקטה אחת, אגודל ואצבע, והגוף מתיישר, הראש צלול. <b>העתיד הזה כבר מותקן בך</b>."],
+[1005,"*","ה-RAS שלך מכויל מעכשיו לזהות הזדמנויות, פתרונות ורוגע בכל מקום שתפנה אליו. בעוד רגע נספור מ-1 עד 5, ובמספר 5 תפקח עיניים ערני ורענן."],
+[1040,"*","1. אנרגיה נקייה בכפות הידיים והרגליים. 2. צוואר, לסת וכתפיים נשארים רפויים. 3. שאיפה עמוקה ומרעננת. 4. העיניים מתכוננות להיפתח. 5. פקח עיניים. ברוך הבא למצב החדש שלך."]];
+const PH=[[0,"Neuro-Priming · אלפא"],[210,"Critical Bypass · ירידה לתטא"],[390,"Re-Coding · עבודה בתטא"],[780,"Somatic Anchor · עיגון"],[930,"Future Pacing · חזרה לערות"]];
+const B1=[[0,11],[210,8],[390,5.5],[780,5.5],[785,40],[825,40],[830,6],[930,10],[1080,14]],B2=[[0,11],[120,8],[220,5.5],[500,5.5],[600,10]];
+const li=(a,t)=>{for(let k=1;k<a.length;k++)if(t<=a[k][0]){const p=a[k-1],q=a[k];return p[1]+(q[1]-p[1])*(t-p[0])/(q[0]-p[0])}return a[a.length-1][1]};
+const dom=()=>{const v=st.vak;if(!v)return"K";return["V","A","K"].sort((a,b)=>v[b]-v[a])[0]};
+/* מנוע סאונד: שני מתנדים לימין/שמאל, רעש חום מסונן שנושם ב-0.1Hz */
+let AC,E=null,T=null,P=null;
+const vol={b:.25,n:.12,d:.03};
+function eng(beatAt,carrier=200){
+AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.resume&&AC.resume();
+const m=AC.createGain();m.gain.value=.9;m.connect(AC.destination);
+const g=AC.createGain();g.gain.value=vol.b;g.connect(m);
+const mk=p=>{const o=AC.createOscillator(),pn=AC.createStereoPanner();pn.pan.value=p;o.frequency.value=carrier;o.connect(pn);pn.connect(g);o.start();return o};
+const L=mk(-1),R=mk(1);
+const nb=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate),d=nb.getChannelData(0);let l=0;for(let i=0;i<d.length;i++){l=(l+.02*(Math.random()*2-1))/1.02;d[i]=l*3.5}
+const ns=AC.createBufferSource();ns.buffer=nb;ns.loop=true;
+const lp=AC.createBiquadFilter();lp.type="lowpass";lp.frequency.value=400;
+const ng=AC.createGain();ng.gain.value=vol.n;
+const lfo=AC.createOscillator(),ld=AC.createGain();lfo.frequency.value=.1;ld.gain.value=.03;lfo.connect(ld);ld.connect(ng.gain);lfo.start();
+const dr=AC.createOscillator(),dg=AC.createGain();dr.frequency.value=528;dg.gain.value=vol.d;dr.connect(dg);dg.connect(m);dr.start();const an=AC.createAnalyser();an.fftSize=1024;m.connect(an);
+ns.connect(lp);lp.connect(ng);ng.connect(m);ns.start();
+return{an,dg,g,ng,set(t){R.frequency.setTargetAtTime(carrier+beatAt(t),AC.currentTime,.3)},stop(){m.gain.setTargetAtTime(0,AC.currentTime,.4);setTimeout(()=>{[L,R,ns,lfo,dr].forEach(x=>{try{x.stop()}catch(e){}})},1500)}}}
+function chime(){if(!AC)return;const n=AC.currentTime;[528,660,792,1000].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(.18/(i+1),n+.05);g.gain.exponentialRampToValueAtTime(.001,n+4);o.connect(g);g.connect(AC.destination);o.start();o.stop(n+4.2)});buzz([80,60,80,60,80])}
+function swish(){if(!AC)return;const n=AC.currentTime,b=AC.createBuffer(1,AC.sampleRate*1.5,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+const s=AC.createBufferSource();s.buffer=b;const f=AC.createBiquadFilter();f.type="bandpass";f.frequency.setValueAtTime(3000,n);f.frequency.exponentialRampToValueAtTime(250,n+1.3);
+const g=AC.createGain();g.gain.setValueAtTime(.001,n);g.gain.linearRampToValueAtTime(.3,n+.15);g.gain.exponentialRampToValueAtTime(.001,n+1.4);s.connect(f);f.connect(g);g.connect(AC.destination);s.start()}
+/* מסכים */
+const ov=h=>{musDuck(1);const o=$("#ov");o.hidden=false;o.innerHTML=h;o.scrollTop=0};
+const closeOv=()=>{musDuck(0);$("#ov").hidden=true;$("#ov").innerHTML=""};
+const nxt=()=>{let i=0;while(i<20&&st.done.includes(i))i++;return i};
+const anchor=()=>Math.min(100,st.done.length*8+(st.sos||0)*2);
+let tab="home";
+function render(){$("#main").innerHTML=tab=="home"?home():tab=="path"?path():sosv();document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.t==tab));const c=$("#ct");c&&mkCT(c)}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()});
+function home(){const v=st.vak||{V:0,A:0,K:0},s=v.V+v.A+v.K||1,i=nxt();
+const bars=[["V","ראייה"],["A","שמיעה"],["K","תחושה"]].map(k=>`<div class="mu" style="margin:6px 0 0">${k[1]} ${Math.round(v[k[0]]/s*100)}%</div><div class="bar"><i style="width:${v[k[0]]/s*100}%"></i></div>`).join("");
+return`<div class="hero"><canvas id="ct"></canvas><div class="hh"><p class="mu">NEUROCODE · TOUCH TO SCAN</p><h1 class="big">REWRITE<br>YOUR BRAIN</h1></div></div><div class="tk"><span>${"SUBCONSCIOUS OS • THETA 5.5HZ • ANCHOR • RE-CODE • ".repeat(12)}</span></div><p class="mu">מערכת הפעלה נוירולוגית: תדרים בינאוריים מדויקים (200Hz שמאל / 205.5Hz ימין), פקודות מוטמעות המותאמות לפרופיל החושי שלך ועוגן סומטי ל-60 שניות. מומלץ באוזניות.</p><video src="assets/radiant.mp4" muted loop autoplay playsinline preload="auto" style="display:block;width:100%;max-width:520px;aspect-ratio:1;object-fit:cover;border-radius:22px;border:1px solid var(--ln);margin:12px auto"></video>
+<div class="card"><b>פרופיל נוירו-חושי</b>${st.vak?bars:'<p class="mu">הכיול לוקח 60 שניות ומתאים את שפת ההנחיה אליך.</p>'}<button class="btn2" onclick="quiz()">${st.vak?"כיול מחדש":"התחל כיול"}</button></div>
+<div class="card"><b>חוזק העוגן: ${anchor()}%</b><div class="bar am"><i style="width:${anchor()}%"></i></div><label style="margin:6px 0">מילת הקוד שלך <input id="wd" value="${st.word}" maxlength="14" style="background:var(--bg);color:var(--tx);border:1px solid var(--ln);border-radius:8px;padding:6px;font:inherit" onchange="st.word=this.value||'בהירות';save()"></label></div>
+<button class="btn" onclick="startDay(${i})">${st.done.length?"המשך ליום "+(i+1):"התחל"}: ${D[i][0]}</button>
+<div class="card"><b>מדד שינוי</b><p class="mu" style="margin:6px 0 0">${tl()}</p></div><div class="card"><b>הכוונה האישית שלך</b><label style="margin:6px 0 0"><input value="${(st.intent||"").replace(/"/g,"")}" maxlength="60" placeholder="למשל: קור רוח לפני מסחר" style="width:100%;background:var(--bg);color:var(--tx);border:1px solid var(--ln);border-radius:8px;padding:8px;font:inherit" onchange="st.intent=this.value;save()"></label></div><div class="card"><b>למה NEUROCODE</b><p class="mu" style="margin:6px 0 0">שלוש שכבות במערכת אחת: <b>חומרה</b> של תדרי מוח בזמן אמת, <b>תוכנה</b> של NLP עם כיול VAK אישי, ו<b>גשר</b> של עוגן SOS ל-60 שניות באמצע היום.</p></div><button class="btn2" onclick="paywall()" style="width:100%;margin:0 0 6px">${st.pro?"PRO פעיל ✓":"שדרג ל-NEUROCODE PRO"}</button><h2>חמש סדרות הליבה</h2>${S.map(s=>`<div class="ser"><b>${s[0]}</b>${s[1]}<small>${s[2]}</small></div>`).join("")}
+<p class="fine">האפליקציה נועדה להרפיה ולמיקוד ואינה תחליף לטיפול. אל תשתמשו בסשנים מלאים בזמן נהיגה. אם יש מצב רפואי או נפשי מאובחן, מומלץ להיוועץ באיש מקצוע.</p>`}
+function pf(n){PF=n;render()}
+function bw(x){P.ov=x===P.ov?null:x;document.querySelectorAll(".bwb").forEach(b=>b.style.borderColor=+b.dataset.h===P.ov?"var(--wv)":"")}
+function setV(k){st.vak={V:k=="V"?3:0,A:k=="A"?3:0,K:k=="K"?3:0};save();P.last=-1}
+function scope(){const c=$("#osc");if(!c||!E||!P||!P.play)return;const g=c.getContext("2d"),w=c.width=c.clientWidth,h=c.height,d=new Uint8Array(E.an.fftSize);E.an.getByteTimeDomainData(d);g.clearRect(0,0,w,h);g.strokeStyle="#d4ff3a";g.lineWidth=1.5;g.beginPath();for(let i=0;i<d.length;i+=2){const x=i/d.length*w,y=d[i]/255*h;i?g.lineTo(x,y):g.moveTo(x,y)}g.stroke();requestAnimationFrame(scope)}
+function paywall(){ov(`<div class="pad"><button class="x" onclick="closeOv()" aria-label="סגור">✕</button><p class="mu">DEEP-LAYER ACCESS · NEUROCODE PRO</p><h2>פתח את כל רבדי העומק (ימים 4–21)</h2><p class="mu">שכתוב קו הזמן, פרוטוקול Swish ויציקת עוגנים בתדר תטא. לשם השוואה: סדרת 10 מפגשי NLP בקליניקה עולה ₪4,500.</p><div class="card"><b>שנתי</b> ₪349 לשנה (כ-₪29 לחודש)</div><div class="card"><b>חודשי</b> ₪69 לחודש</div><div class="card"><b>מייסדים (Lifetime)</b> ₪890 חד-פעמי</div><button class="btn" onclick="st.pro=true;save();closeOv();render()">התחל 7 ימי ניסיון (פתיחת דמו)</button><p class="fine">אב-טיפוס: אין חיוב אמיתי, והמחירים להמחשה בלבד.</p></div>`)}
+function path(){const tb=["הכל","שבוע 1: פירוק","שבוע 2: השתלה","שבוע 3: אוטומציה"];return`<div class="row" style="flex-wrap:wrap;gap:6px;justify-content:flex-start">${tb.map((x,k)=>`<button class="btn2" style="margin:0;${PF==k?"border-color:var(--wv);color:var(--wv)":""}" onclick="pf(${k})">${x}</button>`).join("")}</div>`+D.map((d,i)=>{if(PF&&RM[i][3]!=PF)return"";const ok=i==0||st.done.includes(i-1),pro=!RM[i][4]&&!st.pro,dn=st.done.includes(i);return`<button class="day ${dn?"dn":""}" ${ok?"":"disabled"} onclick="startDay(${i})"><span>${i+1}</span><div><b>${d[0]}</b><small>${d[1]}</small><small>${d[2]}</small></div><em>${dn?"✓":!ok?"🔒":pro?"💎":"▶"}</em></button>`}).join("")}
+function sosv(){return st.done.length<1?`<h1>שליפה מהירה</h1><p class="mu">הכפתור נפתח אחרי שתשלים את סשן הדגל הראשון, שבו מותקן העוגן שלך.</p>`:`<h1>שליפה מהירה</h1><p class="mu">60 שניות באמצע היום: נשימה, מגע, מילת קוד וכיוון לפעולה.</p><button class="sosb" onclick="sosOpen()">Instant Shift</button><p class="mu" style="text-align:center">הופעל ${st.sos||0} פעמים. כל הפעלה מחזקת את העוגן.</p>`}
+function quiz(){let i=0,c={V:0,A:0,K:0};const show=()=>{if(i>=Q.length){st.vak=c;save();closeOv();render();return}
+const q=Q[i];ov(`<div class="pad"><button class="x" onclick="closeOv()" aria-label="סגור">✕</button><p class="mu">כיול עצבי ${i+1} מתוך ${Q.length}</p><h2>${q[0]}</h2>${["V","A","K"].map((k,j)=>`<button class="opt" data-k="${k}">${q[j+1]}</button>`).join("")}</div>`);
+document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{c[b.dataset.k]++;i++;show()})};show()}
+/* נגן סשן */
+function startDay(i){if(!RM[i][4]&&!st.pro){paywall();return}const d=D[i],f=i==0;
+const L=f?SC:[[0,"*","נשימה איטית, נשיפה ארוכה מהשאיפה. <b>שחרר את הלסת והכתפיים</b>."],[120,"*","הטכניקה של היום: <b>"+d[1]+"</b>. הקריינות המלאה לסשן הזה עדיין בכתיבה, והמנוע והתדרים פעילים."],[400,"*","הרשה למוח <b>לשלב ולעגן</b> את מה שנעשה עד כאן."],[540,"*","חזרה הדרגתית לערות. תנועה קלה בידיים וברגליים, ופקיחת עיניים בנחת."]];
+P={i,t:0,play:false,dur:f?1080:600,sp:1,sleep:false,voice:false,last:-1,fx:{},L};
+ov(`<div class="pad"><button class="x" onclick="endS()" aria-label="סגור">✕</button><p class="mu" id="ph">&nbsp;</p><h2>${d[0]}</h2><p class="mu">${d[1]}</p><div id="ln" class="ln mu">לחץ התחל, הרכב אוזניות ושב בנוחות.</div><div class="bar"><i id="pg" style="width:0"></i></div>
+<canvas id="osc" height="64" style="width:100%;display:block"></canvas><div class="row"><span id="tm">0:00</span><button class="btn" id="pp" onclick="tog()">התחל</button></div>
+<div class="row" style="gap:6px;flex-wrap:wrap;justify-content:flex-start;margin:6px 0"><button class="btn2 bwb" data-h="10" onclick="bw(10)">10Hz Alpha</button><button class="btn2 bwb" data-h="5.5" onclick="bw(5.5)">5.5Hz Theta</button><button class="btn2 bwb" data-h="2.5" onclick="bw(2.5)">2.5Hz Delta</button><button class="btn2 bwb" data-h="40" onclick="bw(40)">40Hz Gamma</button></div><div class="row" style="gap:6px;justify-content:flex-start;margin:6px 0"><span class="mu">תסריט:</span><button class="btn2" onclick="setV('V')">ויזואלי</button><button class="btn2" onclick="setV('A')">שמיעתי</button><button class="btn2" onclick="setV('K')">תחושתי</button></div><label>מתח לפני הסשן (0 עד 10)<input type="range" id="pre" min="0" max="10" value="5"></label><label>גלי מוח<input type="range" id="vb" min="0" max=".5" step=".01" value="${vol.b}"></label><label>תדר הרמוני 528Hz<input type="range" id="dv" min="0" max=".1" step=".005" value="${vol.d}"></label><label>מעטפת אקוסטית<input type="range" id="nv" min="0" max=".3" step=".01" value="${vol.n}"></label>
+<label>מהירות הדגמה <select id="sp"><option value="1">רגילה</option><option value="6">פי 6</option><option value="20">פי 20</option></select></label>
+<label><input type="checkbox" id="vo"> קריינות קולית של הדפדפן (עברית, לפי תמיכה במכשיר)</label><label><input type="checkbox" id="sl"> מצב שינה: ירידה לדלתא בסוף</label></div>`);
+$("#vb").oninput=e=>{vol.b=+e.target.value;E&&(E.g.gain.value=vol.b)};$("#nv").oninput=e=>{vol.n=+e.target.value;E&&(E.ng.gain.value=vol.n)};
+$("#dv").oninput=e=>{vol.d=+e.target.value;E&&(E.dg.gain.value=vol.d)};$("#sp").onchange=e=>P.sp=+e.target.value;$("#vo").onchange=e=>{P.voice=e.target.checked;if(!P.voice)speechSynthesis.cancel()};$("#sl").onchange=e=>P.sleep=e.target.checked}
+const bt=t=>{if(P.ov)return P.ov;const e=P.i?480:930;return P.sleep&&t>e?Math.max(2,6-(t-e)/150*4):li(P.i?B2:B1,t)};
+function tog(){if(!P.play){E=eng(bt);P.play=true;scope();T=setInterval(tick,250);$("#pp").textContent="השהה";tick()}else{P.play=false;clearInterval(T);E&&E.stop();speechSynthesis.cancel();$("#pp").textContent="המשך"}}
+const fmt=s=>Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0");
+function tick(){P.t+=.25*P.sp;const t=P.t;if(t>=P.dur)return fin();E.set(t);
+let k=-1;P.L.forEach((x,j)=>{if(t>=x[0]&&(x[1]=="*"||x[1]==dom()))k=j});
+if(k!=P.last){P.last=k;const h=P.L[k][2].replace("{w}",st.word);$("#ln").className="ln";$("#ln").innerHTML=h;
+if(P.voice&&"speechSynthesis" in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(h.replace(/<[^>]+>/g,""));u.lang="he-IL";u.rate=.8;speechSynthesis.speak(u)}}
+if(P.i==0){if(t>=520&&!P.fx.s){P.fx.s=1;swish()}if(t>=810&&!P.fx.c){P.fx.c=1;chime()}$("#ph").textContent=PH.filter(p=>t>=p[0]).pop()[1]}
+else $("#ph").textContent="תדר נוכחי: "+bt(t).toFixed(1)+"Hz";
+$("#pg").style.width=t/P.dur*100+"%";$("#tm").textContent=fmt(t)+" / "+fmt(P.dur)}
+function fin(){P.pre=+($("#pre")||{value:5}).value;clearInterval(T);E&&E.stop();speechSynthesis.cancel();if(!st.done.includes(P.i))st.done.push(P.i);save();chime();
+ov(`<div class="pad"><h2>הסשן הושלם</h2><p class="mu">חוזק העוגן כעת ${anchor()}%. כמה מתח נשאר עכשיו? (לפני הסשן: ${P.pre})</p><label><input type="range" id="post" min="0" max="10" value="${Math.max(0,P.pre-2)}" style="width:100%"></label><button class="btn" onclick="logT()">שמור וחזור</button></div>`)}
+function endS(){clearInterval(T);E&&E.stop();E=null;try{speechSynthesis.cancel()}catch(e){}closeOv();render()}
+/* שליפה מהירה 60 שניות */
+const tl=()=>{const l=st.log||[];if(!l.length)return"בסוף כל סשן תדרג את המתח, וכאן תראה את הירידה.";const d=l.reduce((a,x)=>a+x[1]-x[2],0)/l.length;return"ירידה ממוצעת במתח: <b>"+d.toFixed(1)+" נקודות</b> ב-"+l.length+" סשנים"};
+function logT(){const p=+$("#post").value;(st.log=st.log||[]).push([P.i,P.pre,p]);save();endS()}
+function sosOpen(){if(st.done.length<1){ov('<div class="pad"><button class="x" onclick="closeOv()" aria-label="סגור">✕</button><h2>SOS</h2><p class="mu">העוגן נטען בסשן הדגל הראשון. אחרי שתשלים אותו, הכפתור ישחרר את המצב תוך 60 שניות.</p><button class="btn" onclick="startDay(0)">התחל את סשן הדגל</button></div>');return}
+ov(`<div class="pad"><button class="x" onclick="closeOv()" aria-label="סגור">✕</button><h2>Instant Shift</h2><p class="mu">60 שניות. מה צריך עכשיו?</p><button class="opt" onclick="sosRun(0)">להירגע ולהוריד מתח</button><button class="opt" onclick="sosRun(1)">להתמקד לפני החלטה</button><button class="opt" onclick="sosRun(2)">להעיר אנרגיה</button></div>`)}
+function sosRun(m=0){ov(`<div class="pad"><button class="x" onclick="endSos()" aria-label="סגור">✕</button><div class="ring"></div><div id="ln" class="ln"></div><div class="mu" id="cd" style="text-align:center">60</div></div>`);
+E=eng(t=>t>=15&&t<=40?40:[12,10,15][m]);chime();let t=0;
+const L=[[0,"עצור הכל ל-60 שניות. שאיפה חדה דרך האף, ונשיפה ארוכה דרך הפה. <b>שחרר את הלסת ואת הכתפיים</b>."],[15,"הצמד אגודל ואצבע של יד ימין. אמור בלב: <b>"+st.word+"</b>."],[28,"הצוואר ארוך ומשוחרר, המבט יציב. קור רוח, בהירות, שליטה שקטה."],[42,["מהי הפעולה האחת המדויקת ביותר שלי בדקה הקרובה?","מהו הדבר האחד שדורש את מלוא הקשב שלי עכשיו?","איזו פעולה אחת מניעה אותי קדימה כבר עכשיו?"][m]+(st.intent?" הכוונה שלי: <b>"+st.intent+"</b>":"")],[53,"שחרר את האצבעות. <b>צא לפעולה עכשיו</b>."]];
+let k=-1;T=setInterval(()=>{t++;E.set(t);const j=L.filter(x=>t>=x[0]).length-1;if(j!=k){k=j;$("#ln").innerHTML=L[j][1];if(t==15||t==53)buzz([60,40,60])}if(t==24)swish();$("#cd").textContent=(t%10<4?"שאיפה עמוקה (4 שנ׳)":"נשיפה ארוכה (6 שנ׳)")+" · "+(60-t);if(t>=60){st.sos=(st.sos||0)+1;save();endSos()}},1000)}
+function endSos(){clearInterval(T);E&&E.stop();E=null;closeOv();render()}
+/* מוזיקה אלקטרונית הודית: דרון טמבורה, סקאלת בהירוו על רי, קיק, טבלה, היי-האט */
+let MG,mOn=true,duck=0,mT=0,mS=0,NB,DL;
+function musDuck(d){duck=d;if(MG)MG.gain.setTargetAtTime(mOn&&!d?.55:0,AC.currentTime,.4)}
+function musStart(){const c=AC=AC||new(window.AudioContext||window.webkitAudioContext)();c.resume&&c.resume();if(MG){musDuck(duck);songLoad();return}
+MG=c.createGain();MG.gain.value=0;MG.connect(c.destination);
+DL=c.createDelay();DL.delayTime.value=.375;const fb=c.createGain();fb.gain.value=.4;DL.connect(fb);fb.connect(DL);DL.connect(MG);
+const lp=c.createBiquadFilter();lp.frequency.value=600;const dg=c.createGain();dg.gain.value=0;lp.connect(dg);dg.connect(MG);
+[[73.4,"sawtooth"],[110.1,"sawtooth"],[146.8,"triangle"],[147.3,"triangle"]].forEach(a=>{const o=c.createOscillator();o.type=a[1];o.frequency.value=a[0];o.connect(lp);o.start()});
+NB=c.createBuffer(1,c.sampleRate,c.sampleRate);const nd=NB.getChannelData(0);for(let i=0;i<nd.length;i++)nd[i]=Math.random()*2-1;
+songLoad();musDuck(duck)}
+/* מנטרה: בכל מחזור של 32 שניות, זמרת (עושר) ואחריה זמר (בריאות), 5 שניות כל אחד */
+/* שירה אמיתית: קבצי MP3 של 5 שניות (זמרת=עושר, זמר=בריאות) מוטמעים כ-base64 ב-VOX. מחזור של 15 שניות */
+const VOX={f:"",m:""},VB={};
+async function voxLoad(){for(const k in VOX)if(VOX[k]&&!VB[k])try{const s=atob(VOX[k]),u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);VB[k]=await AC.decodeAudioData(u.buffer)}catch(e){}}
+function play(k,t){const b=VB[k];if(!b)return;const s=AC.createBufferSource(),g=AC.createGain();s.buffer=b;s.connect(g);g.connect(MG);s.start(t)}
+function voice(s,t){if(duck||!mOn)return;if(s==32)sing(t,"f");if(s==80)sing(t,"m")}
+function sing(t,w){const c=AC,f=w=="f",b=f?587.33:146.83,g=c.createGain(),o=c.createOscillator(),lf=c.createOscillator(),ld=c.createGain();
+o.type="sawtooth";o.frequency.value=b;ld.gain.value=b*.012;lf.frequency.value=5.5;lf.connect(ld);ld.connect(o.frequency);
+[0,4,5,4,0].forEach((k,i)=>o.frequency.setTargetAtTime(b*Math.pow(2,SCL[k]/12),t+i,.15));
+[[800,350,1],[1150,700,.6],[2900,2700,.3]].forEach(a=>{const q=c.createBiquadFilter(),h=c.createGain(),m=f?1.15:1;q.type="bandpass";q.Q.value=8;q.frequency.setValueAtTime(a[0]*m,t);q.frequency.setTargetAtTime(a[1]*m,t+2.5,.6);h.gain.value=a[2];o.connect(q);q.connect(h);h.connect(g)});
+g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.22,t+.4);g.gain.setValueAtTime(.22,t+4.4);g.gain.linearRampToValueAtTime(0,t+5);g.connect(MG);g.connect(DL);
+o.start(t);lf.start(t);o.stop(t+5.1);lf.stop(t+5.1);
+if("speechSynthesis" in window&&speechSynthesis.getVoices().some(v=>/^hi/i.test(v.lang)))setTimeout(()=>{if(duck||!mOn)return;const u=new SpeechSynthesisUtterance(f?"धन… धन… धन… धन":"स्वास्थ्य… स्वास्थ्य… स्वास्थ्य");u.lang="hi-IN";u.rate=.45;u.pitch=f?1.8:.5;u.volume=.8;speechSynthesis.speak(u)},Math.max(0,(t-c.currentTime)*1000)+200)}
+const SCL=[0,1,4,5,7,8,11,12],MEL=[0,-1,2,-1,4,3,-1,2,0,-1,4,-1,5,4,2,-1,7,-1,5,4,-1,2,3,-1,2,0,-1,1,0,-1,-1,-1];
+function env(o,g,t,a,d){g.gain.setValueAtTime(a,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.start(t);o.stop(t+d+.05)}
+function mstep(s,t){const c=AC,k=s%16;
+if(k%4==0){const o=c.createOscillator(),g=c.createGain();o.frequency.setValueAtTime(130,t);o.frequency.exponentialRampToValueAtTime(40,t+.12);o.connect(g);g.connect(MG);env(o,g,t,.5,.25)}
+if([3,6,10,11,14].includes(k)){const o=c.createOscillator(),g=c.createGain();o.type="triangle";o.frequency.setValueAtTime(k%2?330:240,t);o.frequency.exponentialRampToValueAtTime(150,t+.1);o.connect(g);g.connect(MG);env(o,g,t,.2,.18)}
+if(k%2){const n=c.createBufferSource();n.buffer=NB;const f=c.createBiquadFilter();f.type="highpass";f.frequency.value=7000;const g=c.createGain();n.connect(f);f.connect(g);g.connect(MG);g.gain.setValueAtTime(.05,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);n.start(t);n.stop(t+.06)}
+const m=MEL[s];if(m>=0){const f=293.66*Math.pow(2,SCL[m]/12),o=c.createOscillator(),fl=c.createBiquadFilter(),g=c.createGain();o.type="sawtooth";o.frequency.setValueAtTime(f*1.03,t);o.frequency.exponentialRampToValueAtTime(f,t+.06);fl.type="lowpass";fl.frequency.setValueAtTime(3500,t);fl.frequency.exponentialRampToValueAtTime(500,t+.4);o.connect(fl);fl.connect(g);g.connect(MG);g.connect(DL);env(o,g,t,.16,.6)}}
+/* סריקת CT של המוח עם מנדלה הודית, נחשפת במגע */
+function mkScan(w,h){const o=document.createElement("canvas");o.width=w;o.height=h;const g=o.getContext("2d"),cx=w/2,cy=h/2,R=Math.min(w,h)*.3;g.lineWidth=Math.max(1,w/700);g.shadowBlur=10;
+[[24,1.05,1.25,"#d4ff3a"],[12,1.25,1.5,"#8fd61f"],[36,1.02,1.12,"#eaff8a"],[48,1.5,1.62,"#d4ff3a"]].forEach(([n,a,b,col])=>{g.strokeStyle=g.shadowColor=col;const r1=R*a,r2=R*b,hw=(r2-r1)*.4;for(let k=0;k<n;k++){g.save();g.translate(cx,cy);g.rotate(k*6.2832/n);g.beginPath();g.moveTo(0,-r1);g.quadraticCurveTo(hw,-(r1+r2)/2,0,-r2);g.quadraticCurveTo(-hw,-(r1+r2)/2,0,-r1);g.stroke();g.restore()}});
+g.strokeStyle=g.shadowColor="#eaff8a";g.beginPath();g.ellipse(cx,cy,R*.98,R*1.04,0,0,7);g.stroke();
+for(let i=0;i<8;i++){g.globalAlpha=.9-i*.08;g.beginPath();for(let j=0;j<=120;j++){const a=j/120*6.2832,r=R*(.92-i*.1)*(1+.06*Math.sin(a*9+i*1.7)+.04*Math.sin(a*17+i)),x=cx+r*.9*Math.cos(a),y=cy+r*Math.sin(a);j?g.lineTo(x,y):g.moveTo(x,y)}g.stroke()}
+g.globalAlpha=1;g.strokeStyle=g.shadowColor="#d4ff3a";g.beginPath();g.moveTo(cx,cy-R*.95);g.lineTo(cx,cy+R*.95);g.stroke();
+g.fillStyle="rgba(143,214,31,.5)";[-1,1].forEach(s=>{g.beginPath();g.ellipse(cx+s*R*.14,cy-R*.1,R*.08,R*.28,s*.25,0,7);g.fill()});return o}
+function mkCT(c){const d=Math.min(2,devicePixelRatio||1),w=c.width=c.clientWidth*d,h=c.height=c.clientHeight*d,g=c.getContext("2d"),sc=mkScan(w,h),cv=()=>{const e=document.createElement("canvas");e.width=w;e.height=h;return e},mk=cv(),tc=cv(),m=mk.getContext("2d"),t=tc.getContext("2d");let py=-1,last=0;
+const rv=(x,y)=>{py=y;const r=120*d,q=m.createRadialGradient(x,y,0,x,y,r);q.addColorStop(0,"rgba(255,255,255,.9)");q.addColorStop(1,"rgba(255,255,255,0)");m.fillStyle=q;m.fillRect(x-r,y-r,2*r,2*r)};
+const mv=e=>{const b=c.getBoundingClientRect();last=performance.now();rv((e.clientX-b.left)*d,(e.clientY-b.top)*d)};
+c.addEventListener("pointermove",mv);c.addEventListener("pointerdown",mv);
+const fr=n=>{if(!c.isConnected)return;if(n-last>1200)rv(w/2+Math.sin(n/900)*w*.32,h/2+Math.sin(n/1300)*h*.3);
+m.globalCompositeOperation="destination-out";m.fillStyle="rgba(0,0,0,.03)";m.fillRect(0,0,w,h);m.globalCompositeOperation="source-over";
+t.globalCompositeOperation="source-over";t.clearRect(0,0,w,h);t.drawImage(sc,0,0);t.globalCompositeOperation="destination-in";t.drawImage(mk,0,0);
+g.clearRect(0,0,w,h);g.globalAlpha=.12;g.drawImage(sc,0,0);g.globalAlpha=1;g.drawImage(tc,0,0);
+if(py>=0){g.fillStyle="rgba(212,255,58,.55)";g.fillRect(0,py,w,2*d);g.font=11*d+"px monospace";g.fillText("SLICE Z "+(py/h*100|0)+" MM",8*d,py-5*d)}
+requestAnimationFrame(fr)};requestAnimationFrame(fr)}
+$("#go").onclick=()=>{mOn=true;$("#mus").style.opacity=1;musStart();buzz(20);$("#intro").classList.add("off");setTimeout(()=>$("#intro").remove(),700)};
+$("#mus").onclick=()=>{mOn=!mOn;$("#mus").style.opacity=mOn?1:.5;if(mOn)musStart();musDuck(duck)};
+/* מפת EEG של הראש בדף הכניסה: קר (מדיהוני ממוצע) במנוחה, חם (מיקוד מרבי) בהרחפה */
+/* ניצוצות חשמל במוח ובגוף: עוקבים אחרי העכבר או האצבע */
+function mkSp(){const c=$("#sp"),w=c.width=c.clientWidth*2,h=c.height=c.clientHeight*2,g=c.getContext("2d");
+const N=[[.5,.2],[.5,.4],[.33,.47],[.67,.47],[.22,.75],[.78,.75]];let PT=[],BL=[],last=0;
+const col=x=>x<.5?[234,255,138]:[212,255,58];
+const bolt=(x1,y1,x2,y2,a)=>{const pts=[[x1,y1]],n=9;for(let i=1;i<n;i++){const t=i/n;pts.push([x1+(x2-x1)*t+(Math.random()-.5)*60,y1+(y2-y1)*t+(Math.random()-.5)*60])}pts.push([x2,y2]);BL.push({p:pts,a,c:col(x2/w)})};
+const burst=(x,y,n,cc)=>{for(let i=0;i<n;i++){const an=Math.random()*6.28,s=1+Math.random()*4;PT.push({x,y,vx:Math.cos(an)*s,vy:Math.sin(an)*s-1,l:1,c:cc||col(x/w)})}};
+const mv=e=>{const b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width,y=(e.clientY-b.top)/b.height,px=x*w,py=y*h,n=performance.now();if(n-last<70)return;last=n;
+let k=0,dm=9;N.forEach((q,i)=>{const d=Math.hypot(q[0]-x,q[1]-y);if(d<dm){dm=d;k=i}});
+bolt(N[0][0]*w,N[0][1]*h,px,py,1);if(k>0)bolt(N[k][0]*w,N[k][1]*h,px,py,.8);burst(px,py,6);burst(N[0][0]*w,N[0][1]*h,4)};
+c.addEventListener("pointermove",mv);
+c.addEventListener("pointerdown",e=>{last=0;mv(e);burst(N[0][0]*w,N[0][1]*h,40,[255,255,255]);N.forEach(q=>burst(q[0]*w,q[1]*h,10));buzz(15)});
+const fr=n=>{if(!c.isConnected)return;if(n-last>900){last=n;const q=N[Math.random()*N.length|0];burst(q[0]*w,q[1]*h,5);if(Math.random()<.4){const r=N[Math.random()*N.length|0];bolt(N[0][0]*w,N[0][1]*h,r[0]*w,r[1]*h,.6)}}
+g.clearRect(0,0,w,h);g.globalCompositeOperation="lighter";
+BL=BL.filter(b=>b.a>.04);BL.forEach(b=>{b.a*=.86;g.strokeStyle="rgba("+b.c+","+b.a+")";g.lineWidth=3;g.shadowColor="rgb("+b.c+")";g.shadowBlur=14;g.beginPath();b.p.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke()});
+g.shadowBlur=0;PT=PT.filter(p=>p.l>0);PT.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.08;p.l-=.025;g.fillStyle="rgba("+p.c+","+p.l+")";g.beginPath();g.arc(p.x,p.y,2.5,0,7);g.fill()});
+requestAnimationFrame(fr)};requestAnimationFrame(fr)}
+function mkTP(){const c=$("#tp");if(!c)return;const N=96,d=Math.min(2,devicePixelRatio||1),S=c.width=c.height=Math.round(c.clientWidth*d),g=c.getContext("2d"),o=document.createElement("canvas");o.width=o.height=N;const og=o.getContext("2d"),im=og.createImageData(N,N),V=new Float32Array(N*N);
+const A=[[-.45,-.3,.28,.5],[.5,-.1,.22,.42],[0,.5,.3,.35],[-.15,.1,.2,.3],[.4,.45,.18,.28]],B=[[0,-.15,.5,1],[-.4,.25,.35,.7],[.45,.3,.3,.6],[.05,.55,.4,.5]];
+const fl=(bl,x,y)=>bl.reduce((s,b)=>s+b[3]*Math.exp(-((x-b[0])**2+(y-b[1])**2)/(2*b[2]*b[2])),0);
+const mx=(a,b,t)=>a+(b-a)*t,cm=t=>t<.5?[mx(34,167,t*2),mx(211,139,t*2),mx(238,250,t*2)]:[mx(167,212,t*2-1),mx(139,255,t*2-1),mx(250,58,t*2-1)];
+let L=0,tg=0,auto=true,hot=false;const t0=performance.now(),e=$("#eeg"),set=v=>{auto=false;tg=v};
+e.addEventListener("pointerenter",()=>set(1));e.addEventListener("pointerdown",()=>set(1));["pointerleave","pointerup","pointercancel"].forEach(k=>e.addEventListener(k,()=>set(0)));
+const fr=n=>{if(!c.isConnected)return;if(auto)tg=Math.sin((n-t0)/1400)>0?1:0;L+=(tg-L)*.06;
+for(let j=0;j<N;j++)for(let i=0;i<N;i++){const x=i/(N-1)*2-1,y=j/(N-1)*2-1;V[j*N+i]=Math.min(1,Math.max(0,mx(fl(A,x,y),fl(B,x,y),L)*.9))}
+for(let j=0;j<N;j++)for(let i=0;i<N;i++){const k=j*N+i,v=V[k],r=cm(v),edge=(i<N-1&&Math.floor(v*11)!=Math.floor(V[k+1]*11))||(j<N-1&&Math.floor(v*11)!=Math.floor(V[k+N]*11)),f=edge?.55:1;im.data[k*4]=r[0]*f;im.data[k*4+1]=r[1]*f;im.data[k*4+2]=r[2]*f;im.data[k*4+3]=255}
+og.putImageData(im,0,0);g.clearRect(0,0,S,S);g.save();g.beginPath();g.arc(S/2,S/2,S*.38,0,7);g.clip();g.imageSmoothingEnabled=true;g.drawImage(o,S*.12,S*.12,S*.76,S*.76);g.restore();
+g.strokeStyle="#e8ecf0";g.lineWidth=2.5*d;g.beginPath();g.arc(S/2,S/2,S*.38,0,7);g.stroke();g.beginPath();g.moveTo(S*.46,S*.125);g.lineTo(S/2,S*.07);g.lineTo(S*.54,S*.125);g.stroke();
+[.115,.885].forEach(x=>{g.beginPath();g.ellipse(S*x,S/2,S*.03,S*.07,0,0,7);g.stroke()});
+$("#gm").style.left=L*100+"%";const h=L>.5;if(h!=hot){hot=h;$("#el1").textContent=h?"NEUROCODE":"AVERAGE MEDITATION APP";$("#el2").textContent=h?"5.5HZ THETA · ANCHOR":"PASSIVE RELAXATION";$("#gl2").style.color=h?"#d4ff3a":"";$("#gl1").style.color=h?"":"#eaff8a"}
+requestAnimationFrame(fr)};requestAnimationFrame(fr)}
+mkSp();
+mkTP();render();
+["pointerdown","keydown","touchstart","wheel","mousemove"].forEach(k=>addEventListener(k,()=>{if(mOn&&(!AC||AC.state!="running"))musStart()},{passive:true}));
+let SB=null,SS=null;
+async function songLoad(){if(SS)return;try{if(!SB){SB=await AC.decodeAudioData(await(await fetch(SONG_URL)).arrayBuffer())}SS=AC.createBufferSource();SS.buffer=SB;SS.loop=true;SS.connect(MG);SS.start()}catch(e){}}
+const SONG_URL="assets/song.mp3";
+try{musStart()}catch(e){}
+</script></body></html>
